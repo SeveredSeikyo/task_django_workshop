@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body style="margin: 0; font-family: Arial, sans-serif; background: linear-gradient(135deg, #1e3c72, #2a5298); min-height: 100vh; display: flex; flex-direction: column;">
+{% etxends 'base.html' %}
+
+{% block content %}
+<div style="margin: 0; font-family: Arial, sans-serif; background: linear-gradient(135deg, #1e3c72, #2a5298); min-height: 100vh; display: flex; flex-direction: column;">
     <nav style="background: #ffffff; padding: 15px 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
             <h2 style="margin: 0; color: #2a5298; font-size: 24px;">MyWebsite</h2>
@@ -36,5 +32,5 @@
     <footer style="background: #ffffff; padding: 15px; text-align: center; color: #2a5298; font-size: 14px; box-shadow: 0 -2px 4px rgba(0,0,0,0.1);">
         <p style="margin: 0;">&copy; 2025 MyWebsite. All rights reserved.</p>
     </footer>
-</body>
-</html>
+</div>
+{% endblock content %}
