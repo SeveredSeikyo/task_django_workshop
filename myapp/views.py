@@ -5,16 +5,17 @@ from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 def home(request):
+    print(request.user.is_authenticated)
     name='Thanmay'
     nums=[1,2,3,4,5,6,7,8,9]
     context={'name':name,'nums':nums}
-    if request.user.username:
+    if request.user.is_authenticated:
         return redirect('Dashboard')
     else:
         return render(request,'home.html',context)
 
 def dashboard(request):
-    if request.user.username:
+    if request.user.is_authenticated:
         return render(request,'dashboard.html')
     else:
         return redirect('Home')
@@ -22,7 +23,7 @@ def dashboard(request):
 def user_login(request):
 
     if request.method=='GET':
-        if request.user.username:
+        if request.user.is_authenticated:
             return redirect('Dashboard')
         else:
             return render(request,'login.html')
@@ -47,7 +48,7 @@ def register(request):
     context={'form':form}
 
     if request.method=='GET':
-        if request.user.username:
+        if request.user.is_authenticated:
             return redirect('Dashboard')
         else:
             return render(request,'register.html',context)
