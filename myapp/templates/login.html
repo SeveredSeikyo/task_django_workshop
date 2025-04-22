@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background: linear-gradient(135deg, #1e3c72, #2a5298); min-height: 100vh; display: flex; flex-direction: column;">
+    <nav style="background: #ffffff; padding: 15px 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0; color: #2a5298; font-size: 24px;">MyWebsite</h2>
+            <a href="/" style="color: #2a5298; text-decoration: none; font-size: 16px; transition: color 0.3s;">Home</a>
+        </div>
+    </nav>
+    <main style="flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: #ffffff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-align: center; max-width: 400px; width: 100%;">
+            <h1 style="color: #2a5298; margin-bottom: 20px; font-size: 28px;">Login Here</h1>
+            <!-- <input type="text" placeholder="Username" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='#2a5298';">
+            <input type="password" placeholder="Password" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='#2a5298';">
+            <button style="background: #2a5298; color: #ffffff; padding: 12px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background 0.3s, transform 0.2s;" onmouseover="this.style.background='#1e3c72';" onmouseout="this.style.background='#2a5298';" onclick="window.location.href='/dashboard'">Login</button> -->
+            <form method="post">
+                {% csrf_token %}
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" placeholder="username">
+                <br>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" placeholder="password">
+                <br>
+                <button type="submit">Login</button>
+            </form>
+            {% if error %}
+                <p>{{error}}</p>
+            {% endif %}
+        </div>
+    </main>
+    <footer style="background: #ffffff; padding: 15px; text-align: center; color: #2a5298; font-size: 14px; box-shadow: 0 -2px 4px rgba(0,0,0,0.1);">
+        <p style="margin: 0;">&copy; 2025 MyWebsite. All rights reserved.</p>
+    </footer>
+</body>
+</html>
