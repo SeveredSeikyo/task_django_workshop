@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import UserRegistrationForm,PostForm
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -68,15 +69,13 @@ def user_logout(request):
     logout(request)
     return redirect('Home')
 
+@login_required(login_url='Login')
 def create_post(request):
     form=PostForm()
     context={'form':form}
 
     if request.method=='GET':
-        if request.user.is_authenticated:
-            return render(request,'create-post.html',context)
-        else:
-            return render(request,'login.html')
+        return render(request,'create-post.html',context)
 
     if request.method=='POST':
 
