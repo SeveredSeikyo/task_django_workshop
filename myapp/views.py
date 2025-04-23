@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm,PostForm
 from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
@@ -67,3 +67,26 @@ def register(request):
 def user_logout(request):
     logout(request)
     return redirect('Home')
+
+def create_post(request):
+    form=PostForm()
+    context={'form':form}
+
+    if request.method=='GET':
+        if request.user.is_authenticated:
+            return render(request,'create-post.html',context)
+        else:
+            return render(request,'login.html')
+
+    if request.method=='POST':
+
+        form=PostForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=False)
+            post.author=request.user
+            post.save()
+            return redirect('Dashboard')
+        else:
+            context.update(error='Invalid Form Submission. Please Try Again')
+            return render(request,'create-post.html',context)
+
