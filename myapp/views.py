@@ -99,7 +99,11 @@ def display_post(request):
     return render(request,'display-post.html',context)
 
 def update_post(request,id):
-    post=Post.objects.get(pk=id)
+
+    try:
+        post=Post.objects.get(pk=id)
+    except Post.DoesNotExist:
+        return HttpResponse('Post Does Not Exist!')
 
     if request.user!=post.author:
         return HttpResponse('You are not allowed to update this post!')
