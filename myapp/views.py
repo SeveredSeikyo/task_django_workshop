@@ -124,7 +124,10 @@ def update_post(request,id):
             return render(request,'update-post.html',context)
         
 def delete_post(request,id):
-    post=Post.objects.get(pk=id)
-    Post.delete(post)
+    try:
+        post=Post.objects.get(pk=id)
+        Post.delete(post)
+    except Post.DoesNotExist:
+        return HttpResponse('Item does not exist!')
 
     return redirect('Display-Post')
