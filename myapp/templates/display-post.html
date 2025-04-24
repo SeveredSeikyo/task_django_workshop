@@ -20,7 +20,7 @@
                             {% if request.user.is_authenticated %}
                                 {% if request.user == post.author %}
                                     <a href="{% url 'Update-Post' post.id %}" class="card-link btn btn-primary">Update</a>
-                                    <a href="#" class="card-link btn btn-danger">Delete</a>
+                                    <a href="{% url 'Delete-Post' post.id %}" class="card-link btn btn-danger">Delete</a>
                                 {% endif %}
                             {% endif %}
                         </div>

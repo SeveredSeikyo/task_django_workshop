@@ -102,7 +102,6 @@ def update_post(request,id):
 
     try:
         post=Post.objects.get(pk=id)
-        
     except Post.DoesNotExist:
         return HttpResponse('Post Does Not Exist!')
 
@@ -123,3 +122,9 @@ def update_post(request,id):
         else:
             context.update(error='invalid form submission, try again!')
             return render(request,'update-post.html',context)
+        
+def delete_post(request,id):
+    post=Post.objects.get(pk=id)
+    Post.delete(post)
+
+    return redirect('Display-Post')
