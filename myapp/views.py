@@ -126,8 +126,12 @@ def update_post(request,id):
 def delete_post(request,id):
     try:
         post=Post.objects.get(pk=id)
-        Post.delete(post)
     except Post.DoesNotExist:
         return HttpResponse('Item does not exist!')
+    
+    if request.user!=post.author:
+        return HttpResponse('You are not allowed to delete this post!')
+    
+    post.delete()
 
     return redirect('Display-Post')
