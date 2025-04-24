@@ -11,12 +11,14 @@
             <h1 style="color: #2a5298; margin-bottom: 20px; font-size: 28px;">Posts</h1>
             <div class="d-flex flex-row flex-wrap justify-content-center">
                 {% for post in post_list %}
-                    <div class="card" style="width: 25rem; margin: 0px 4px;">
+                    <div class="card" style="width: 25rem; margin: 5px auto;">
                         <div class="card-body">
-                        <h5 class="card-title">{{post.title}}</h5>
-                        <p class="card-title">Author: {{post.author}} | Date: {{post.published_on}}</p>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">{{post.subtitle}}</h6>
-                        <p class="card-text">{{post.content}}</p>
+                            <h5 class="card-title">{{post.title}}</h5>
+                            <p class="card-title">Author: {{post.author}} | Date: {{post.published_on}}</p>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{post.subtitle}}</h6>
+                            <p class="card-text">{{post.content}}</p>
+                            <a href="{% url 'Update-Post' post.id %}" class="card-link btn btn-primary">Update</a>
+                            <a href="#" class="card-link btn btn-danger">Delete</a>
                         </div>
                     </div>
                 {% endfor %}

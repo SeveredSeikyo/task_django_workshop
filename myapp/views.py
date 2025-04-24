@@ -95,3 +95,10 @@ def display_post(request):
     print(post_list)
     context={'post_list':post_list}
     return render(request,'display-post.html',context)
+
+def update_post(request,id):
+    post=Post.objects.get(pk=id)
+    form=PostForm(instance=post)
+    context={'form':form}
+    if request.method=='GET':
+        return render(request, 'update-post.html',context)
