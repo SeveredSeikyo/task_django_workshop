@@ -102,6 +102,7 @@ def update_post(request,id):
 
     try:
         post=Post.objects.get(pk=id)
+        
     except Post.DoesNotExist:
         return HttpResponse('Post Does Not Exist!')
 
